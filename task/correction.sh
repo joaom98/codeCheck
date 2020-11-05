@@ -1,9 +1,6 @@
 #!/bin/bash
 
-number_of_inputs=$(ls input/ | wc -l)
+echo "Checking if output matches the expected: "
 
-for test_case in $( seq 1 $number_of_inputs )
-do	
-	echo "Checking output number ${test_case}!"
-	diff -s output_generated/$test_case output_expected/$test_case
-done
+diff -Z output_generated/output output_expected/output > output_generated/difference
+echo $? > output_generated/exit_code_diff
